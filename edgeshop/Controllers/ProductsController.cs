@@ -14,7 +14,7 @@ namespace edgeshop.Controllers
     [Route("api/[controller]")]
     [ApiController]
 	//[EnableCors(origins: "*", headers: "*", methods: "*")]
-	[EnableCors("AllowAnyOrigin")]
+	[EnableCors("Allowedgeshop")]
 	public class ProductsController : ControllerBase
     {
 		
