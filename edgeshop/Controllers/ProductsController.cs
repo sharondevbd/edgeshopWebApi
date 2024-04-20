@@ -6,14 +6,19 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using edgeshop.Models;
+using Microsoft.AspNetCore.Cors;
+using System.Configuration;
 
 namespace edgeshop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+	//[EnableCors(origins: "*", headers: "*", methods: "*")]
+	[EnableCors("AllowAnyOrigin")]
+	public class ProductsController : ControllerBase
     {
-        private readonly edgeShopContext _context;
+		
+		private readonly edgeShopContext _context;
 
         public ProductsController(edgeShopContext context)
         {
@@ -24,7 +29,7 @@ namespace edgeshop.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-          if (_context.Products == null)
+			if (_context.Products == null)
           {
               return NotFound();
           }
